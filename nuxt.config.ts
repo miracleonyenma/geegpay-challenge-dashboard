@@ -2,16 +2,19 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
-  modules: [ 'shadcn-nuxt'],
+  modules: ["shadcn-nuxt", "@nuxt/ui"],
   shadcn: {
     /**
      * Prefix for all the imported component
      */
-    prefix: '',
+    prefix: "",
     /**
      * Directory that the component lives in.
      * @default "./components/ui"
      */
-    componentDir: './components/ui'
-  }
-})
+    componentDir: "./components/ui",
+  },
+  colorMode: {
+    preference: "light",
+  },
+});
