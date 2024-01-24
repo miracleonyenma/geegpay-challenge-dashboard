@@ -1,6 +1,6 @@
-const animate = require("tailwindcss-animate");
-
 /** @type {import('tailwindcss').Config} */
+const animate = require("tailwindcss-animate");
+const defaltTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   darkMode: ["class"],
   safelist: ["dark"],
@@ -14,6 +14,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["'Plus Jakarta Sans'", ...defaltTheme.fontFamily.sans],
+      },
       colors: {
         green: {
           DEFAULT: "#34caa5",

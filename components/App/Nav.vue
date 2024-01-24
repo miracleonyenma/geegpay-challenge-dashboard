@@ -12,10 +12,19 @@ import DiscountShapeBrokenIcon from "~/assets/svg/vuesax/broken/discount-shape.s
 import DiscountShapeBulkIcon from "~/assets/svg/vuesax/bulk/discount-shape.svg";
 import InfoCircleBrokenIcon from "~/assets/svg/vuesax/broken/info-circle.svg";
 import InfoCircleBulkIcon from "~/assets/svg/vuesax/bulk/info-circle.svg";
-import LogoutIcon from "~/assets/svg/vuesax/broken/logout.svg";
-import Setting2Icon from "~/assets/svg/vuesax/broken/setting-2.svg";
-import ArrowRight2Icon from "~/assets/svg/vuesax/broken/arrow-right-2.svg";
-const links = [
+
+const props = defineProps<{
+  links?: {
+    label: string;
+    icon: {
+      active: string;
+      inactive: string;
+    };
+    to: string;
+  }[];
+}>();
+
+const links = props.links || [
   // {
   //   label: "Profile",
   //   avatar: {
@@ -73,33 +82,6 @@ const links = [
     to: "/about",
   },
 ];
-
-const bottomLinks = [
-  {
-    label: "Settings",
-    icon: {
-      active: Setting2Icon,
-      inactive: Setting2Icon,
-    },
-    to: "/settings",
-  },
-  {
-    label: "Next",
-    icon: {
-      active: ArrowRight2Icon,
-      inactive: ArrowRight2Icon,
-    },
-    to: "/next",
-  },
-  {
-    label: "Logout",
-    icon: {
-      active: LogoutIcon,
-      inactive: LogoutIcon,
-    },
-    to: "/logout",
-  },
-];
 </script>
 <template>
   <nav class="app-nav">
@@ -151,7 +133,7 @@ const bottomLinks = [
 }
 
 .app-nav__link {
-  @apply flex w-full items-center justify-center gap-2 py-2.5 text-gray-600 dark:text-gray-300;
+  @apply flex w-full items-center justify-center gap-2 py-2.5 text-gray-400 dark:text-gray-300;
 }
 
 .app-nav__link.router-link-active {

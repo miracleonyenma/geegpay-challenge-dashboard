@@ -17,77 +17,68 @@ import MoonIcon from "~/assets/svg/moon.svg";
 import LogoutIcon from "~/assets/svg/vuesax/broken/logout.svg";
 import Setting2Icon from "~/assets/svg/vuesax/broken/setting-2.svg";
 import ArrowRight2Icon from "~/assets/svg/vuesax/broken/arrow-right-2.svg";
-const links = [
-  // {
-  //   label: "Profile",
-  //   avatar: {
-  //     src: "https://avatars.githubusercontent.com/u/739984?v=4",
-  //   },
-  //   badge: 100,
-  // },
-  {
-    label: "Overview",
-    icon: {
-      active: CategoryBulkIcon,
-      inactive: CategoryBrokenIcon,
-    },
-    to: "/",
-  },
-  {
-    label: "Stats",
-    icon: {
-      active: TrendUpBulkIcon,
-      inactive: TrendUpBrokenIcon,
-    },
-    to: "/stats",
-  },
-  {
-    label: "Users",
-    icon: {
-      active: Profile2UserBulkIcon,
-      inactive: Profile2UserBrokenIcon,
-    },
+import SearchIcon from "~/assets/svg/icon-search.svg";
 
-    to: "/users",
-  },
-  {
-    label: "Products",
-    icon: {
-      active: BoxBulkIcon,
-      inactive: BoxBrokenIcon,
-    },
-    to: "/products",
-  },
-  {
-    label: "Discounts",
-    icon: {
-      active: DiscountShapeBulkIcon,
-      inactive: DiscountShapeBrokenIcon,
-    },
-    to: "/discounts",
-  },
-  {
-    label: "Settings",
-    icon: {
-      active: Setting2Icon,
-      inactive: Setting2Icon,
-    },
-    to: "/settings",
-  },
-  {
-    label: "Logout",
-    icon: {
-      active: LogoutIcon,
-      inactive: LogoutIcon,
-    },
-    to: "/logout",
-  },
+const isOpen = ref(false);
+
+const people = [
+  { id: 1, label: "Wade Cooper" },
+  { id: 2, label: "Arlene Mccoy" },
+  { id: 3, label: "Devon Webb" },
+  { id: 4, label: "Tom Cook" },
+  { id: 5, label: "Tanya Fox" },
+  { id: 6, label: "Hellen Schmidt" },
+  { id: 7, label: "Caroline Schultz" },
+  { id: 8, label: "Mason Heaney" },
+  { id: 9, label: "Claudie Smitham" },
+  { id: 10, label: "Emil Schaefer" },
 ];
+
+const selected = ref([]);
 </script>
 <template>
-  <div>
+  <div class="default-layout">
     <AppMenu />
-    <slot />
+    <div>
+      <header class="app-header">
+        <div class="wrapper">
+          <h1>Dashboard</h1>
+
+          <div>
+            <UButton
+              :ui="{
+                rounded: 'rounded-full',
+              }"
+              variant="outline"
+              color="gray"
+              label="Open"
+              @click="isOpen = true"
+              class="h-12 w-80 gap-2 p-2"
+            >
+              <template #leading>
+                <SearchIcon class="icon" />
+              </template>
+              Search...
+            </UButton>
+
+            <UModal v-model="isOpen">
+              <UCommandPalette
+                v-model="selected"
+                multiple
+                nullable
+                :groups="[{ key: 'people', commands: people }]"
+              />
+            </UModal>
+          </div>
+        </div>
+      </header>
+
+      <slot />
+    </div>
   </div>
 </template>
-<style scoped></style>
+<style scoped>
+.default-layout {
+  @apply flex;
+}
+</style>

@@ -15,9 +15,7 @@ const isDark = computed({
 </script>
 <template>
   <ClientOnly>
-    <div
-      class="theme-control flex flex-col items-center justify-center gap-2 rounded-full bg-white p-2 dark:bg-gray-800"
-    >
+    <div class="theme-control">
       <UButton
         @click="isDark = false"
         square
@@ -46,3 +44,8 @@ const isDark = computed({
     </template>
   </ClientOnly>
 </template>
+<style scoped>
+.theme-control {
+  @apply flex flex-col items-center justify-center gap-2 rounded-full bg-white p-2 dark:bg-gray-800;
+}
+</style>

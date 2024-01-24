@@ -1,5 +1,35 @@
 <script setup lang="ts">
 import LogoIcon from "~/assets/svg/logo.svg";
+import LogoutIcon from "~/assets/svg/vuesax/broken/logout.svg";
+import Setting2Icon from "~/assets/svg/vuesax/broken/setting-2.svg";
+import ArrowRight2Icon from "~/assets/svg/vuesax/broken/arrow-right-2.svg";
+
+const bottomLinks = [
+  {
+    label: "Settings",
+    icon: {
+      active: Setting2Icon,
+      inactive: Setting2Icon,
+    },
+    to: "/settings",
+  },
+  {
+    label: "Next",
+    icon: {
+      active: ArrowRight2Icon,
+      inactive: ArrowRight2Icon,
+    },
+    to: "/next",
+  },
+  {
+    label: "Logout",
+    icon: {
+      active: LogoutIcon,
+      inactive: LogoutIcon,
+    },
+    to: "/logout",
+  },
+];
 </script>
 <template>
   <header class="app-menu">
@@ -8,6 +38,7 @@ import LogoIcon from "~/assets/svg/logo.svg";
 
       <AppNav />
       <ThemeControl />
+      <AppNav class="mt-auto" :links="bottomLinks" />
     </div>
   </header>
 </template>
