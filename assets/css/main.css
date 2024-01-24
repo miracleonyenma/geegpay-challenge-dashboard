@@ -76,3 +76,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .icon {
+    @apply h-6 w-6;
+  }
+}

@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
-  modules: ["shadcn-nuxt", "@nuxt/ui"],
+  modules: ["shadcn-nuxt", "@nuxt/ui", "nuxt-svgo"],
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -16,5 +16,8 @@ export default defineNuxtConfig({
   },
   colorMode: {
     preference: "light",
+  },
+  svgo: {
+    defaultImport: "component",
   },
 });
