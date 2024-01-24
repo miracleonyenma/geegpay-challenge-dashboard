@@ -85,9 +85,59 @@ const links = [
 ];
 </script>
 <template>
-  <div>
-    <AppMenu />
-    <slot />
-  </div>
+  <nav class="app-nav">
+    <div class="wrapper">
+      <ul class="app-nav__list">
+        <li v-for="link in links" :key="link.label" class="app-nav__item">
+          <NuxtLink
+            :to="link.to"
+            class="app-nav__link"
+            :class="{
+              'app-nav__link--active': $route.path === link.to,
+            }"
+          >
+            <component
+              :is="link.icon[$route.path === link.to ? 'active' : 'inactive']"
+              class="icon"
+            />
+            <span class="app-nav__label">{{ link.label }}</span>
+          </NuxtLink>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </template>
-<style scoped></style>
+<style scoped>
+.app-nav {
+  @apply w-full;
+}
+
+.app-nav__list {
+  @apply flex w-full flex-col items-center gap-4;
+}
+
+.app-nav__item {
+  @apply relative flex w-full justify-center;
+}
+
+.app-nav__item::after {
+  content: "";
+  @apply absolute right-0 top-1/2 h-[1.5rem] w-[0.1875rem] -translate-y-1/2 transform rounded-l-lg;
+}
+
+.app-nav__item:has(.app-nav__link:hover)::after {
+  @apply bg-gray-400;
+}
+
+.app-nav__item:has(.router-link-active)::after {
+  @apply !bg-gray-900;
+}
+
+.app-nav__link {
+  @apply flex w-full items-center justify-center gap-2 py-2.5 text-gray-600;
+}
+
+.app-nav__label {
+  @apply hidden;
+}
+</style>
