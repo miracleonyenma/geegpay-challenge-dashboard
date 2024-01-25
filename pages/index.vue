@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import BoxBroken from "~/assets/svg/vuesax/broken/info-circle.svg";
-
+import BoxTickBulkIcon from "~/assets/svg/vuesax/bulk/box-tick.svg";
+import ThreeDRotateBulkIcon from "~/assets/svg/vuesax/bulk/3d-rotate.svg";
+import CoinBulkIcon from "~/assets/svg/vuesax/bulk/coin.svg";
+import ShoppingCartBulkIcon from "~/assets/svg/vuesax/bulk/shopping-cart.svg";
 import { VisXYContainer, VisLine, VisAxis } from "@unovis/vue";
 
 const monthlyData: DataRecord[] = [
@@ -54,6 +57,33 @@ const data = computed(() => {
   }
 });
 
+const orderGroupData = [
+  {
+    name: "Total Orders",
+    icon: BoxTickBulkIcon,
+    value: 350,
+    trend: +23.5,
+  },
+  {
+    name: "Total Refund",
+    icon: ThreeDRotateBulkIcon,
+    value: 120,
+    trend: -12.5,
+  },
+  {
+    name: "Average Sales",
+    icon: ShoppingCartBulkIcon,
+    value: 230,
+    trend: +12.5,
+  },
+  {
+    name: "Total Income",
+    icon: CoinBulkIcon,
+    value: 120,
+    trend: +23.5,
+  },
+];
+
 watch(
   () => data.value,
   (value) => {
@@ -96,6 +126,9 @@ watch(
         </template>
         <GroupedBar :data="data" />
       </UCard>
+    </div>
+    <div class="grid-col col-span-4 grid">
+      
     </div>
   </main>
 </template>
