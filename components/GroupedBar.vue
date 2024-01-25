@@ -41,16 +41,54 @@ const tickFormat = computed(() => (tick: number) => props.data[tick].label);
 
 const x = (d: DataRecord) => d.x;
 const y = (d: DataRecord) => d.y;
+
+const svgDefs = `
+    <linearGradient id="gradient" gradientTransform="rotate(90)">
+      <stop offset="20%" stop-color="#34caa5" />
+      <stop offset="80%" stop-color="#34caa566" />
+    </linearGradient>
+`;
+
+const addGradientFillToElement = (value: string) => {
+  const element = document.querySelector(
+    `[data-value="${value}"]`,
+  ) as HTMLElement;
+  element.style.fill = "url(#gradient)";
+};
+
+const removeGradientFillFromElement = (value: string) => {
+  const element = document.querySelector(
+    `[data-value="${value}"]`,
+  ) as HTMLElement;
+  element.style.fill = "rgb(var(--color-primary-400))";
+};
 </script>
 <template>
   <div class="grouped-bar">
-    <VisXYContainer :data="$props.data">
+    <VisXYContainer :svgDefs="svgDefs" :data="$props.data">
       <VisGroupedBar
         :groupWidth="45"
         :groupPadding="0.45"
         :roundedCorners="true"
         :x="x"
         :y="y"
+        color="rgb(var(--color-primary-400))"
+        :events="{
+          [GroupedBar.selectors.barGroup]: {
+            mouseover: (d: DataRecord) => {
+              console.log(d);
+              addGradientFillToElement(`${d.y}-${d.label}`);
+            },
+            mouseout: (d: DataRecord) => {
+              removeGradientFillFromElement(`${d.y}-${d.label}`);
+            },
+          },
+        }"
+        :attributes="{
+          [GroupedBar.selectors.bar]: {
+            'data-value': (d: DataRecord) => `${d.y}-${d.label}`,
+          },
+        }"
       />
       <VisAxis
         :tickLine="undefined"
@@ -69,3 +107,4 @@ const y = (d: DataRecord) => d.y;
     </VisXYContainer>
   </div>
 </template>
+<style scoped></style>
