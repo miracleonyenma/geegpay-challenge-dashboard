@@ -76,17 +76,22 @@ watch(
               Sales Trend
             </h2>
 
-            <USelect
-              :ui="{
-                rounded: 'rounded-full',
-              }"
-              v-model="selected"
-              :options="[
-                { label: 'Monthly', value: 'monthly' },
-                { label: 'Weekly', value: 'weekly' },
-                { label: 'Daily', value: 'daily' },
-              ]"
-            />
+            <div class="flex items-center gap-4">
+              <label for="sort-by" class="text-sm font-medium">
+                Sort by:
+              </label>
+              <USelect
+                :ui="{
+                  rounded: 'rounded-full',
+                }"
+                v-model="selected"
+                :options="[
+                  { label: 'Monthly', value: 'monthly' },
+                  { label: 'Weekly', value: 'weekly' },
+                  { label: 'Daily', value: 'daily' },
+                ]"
+              />
+            </div>
           </div>
         </template>
         <GroupedBar :data="data" />
