@@ -74,7 +74,7 @@ const getDateIntl = () => {
 </script>
 <template>
   <header
-    class="app-header w-full border-b border-gray-100 bg-gray-50 dark:border-gray-800 dark:bg-gray-900"
+    class="app-header w-full border-b border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900"
   >
     <div class="wrapper flex items-center p-4">
       <h1
