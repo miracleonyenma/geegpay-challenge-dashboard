@@ -12,6 +12,22 @@ const isDark = computed({
     colorMode.preference = value ? "dark" : "light";
   },
 });
+
+onMounted(() => {
+  watch(
+    () => isDark.value,
+    (value) => {
+      document.body.classList.toggle("theme-dark", value);
+    },
+    { immediate: true },
+  );
+});
+
+useHead({
+  bodyAttrs: {
+    class: isDark.value ? "theme-dark" : "",
+  },
+});
 </script>
 <template>
   <ClientOnly>

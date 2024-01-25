@@ -8,24 +8,23 @@ import {
   VisTooltip,
 } from "@unovis/vue";
 import { GroupedBar } from "@unovis/ts";
-type DataRecord = { x: number; y: number; month: string };
 
 const props = defineProps<{ data?: DataRecord[] }>();
 
 const data = ref<DataRecord[]>(
   props.data || [
-    { x: 0, y: 6, month: "Jan" },
-    { x: 1, y: 21, month: "Feb" },
-    { x: 2, y: 3, month: "Mar" },
-    { x: 3, y: 9, month: "Apr" },
-    { x: 4, y: 15, month: "May" },
-    { x: 5, y: 45, month: "Jun" },
-    { x: 6, y: 18, month: "Jul" },
-    { x: 7, y: 6, month: "Aug" },
-    { x: 8, y: 32, month: "Sep" },
-    { x: 9, y: 3, month: "Oct" },
-    { x: 10, y: 30, month: "Nov" },
-    { x: 11, y: 25, month: "Dec" },
+    { x: 0, y: 6, label: "Jan" },
+    { x: 1, y: 21, label: "Feb" },
+    { x: 2, y: 3, label: "Mar" },
+    { x: 3, y: 9, label: "Apr" },
+    { x: 4, y: 15, label: "May" },
+    { x: 5, y: 45, label: "Jun" },
+    { x: 6, y: 18, label: "Jul" },
+    { x: 7, y: 6, label: "Aug" },
+    { x: 8, y: 32, label: "Sep" },
+    { x: 9, y: 3, label: "Oct" },
+    { x: 10, y: 30, label: "Nov" },
+    { x: 11, y: 25, label: "Dec" },
   ],
 );
 
