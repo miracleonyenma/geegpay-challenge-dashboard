@@ -118,6 +118,7 @@ const fadeIn = () => {
         :domainLine="false"
         type="x"
         :tickFormat="(tick: number) => $props.data[tick]?.label"
+        :numTicks="$props.data.length"
       />
       <VisAxis type="y" :domainLine="false" />
       <VisTooltip

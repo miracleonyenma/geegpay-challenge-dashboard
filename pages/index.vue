@@ -62,7 +62,7 @@ watch(
 );
 </script>
 <template>
-  <main class="grid grid-cols-8 gap-4 p-4">
+  <main class="grid grid-cols-9 gap-4 p-4">
     <div class="col-span-5">
       <UCard
         :ui="{
