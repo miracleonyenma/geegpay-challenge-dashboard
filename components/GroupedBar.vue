@@ -54,6 +54,7 @@ const addGradientFillToElement = (value: string) => {
     `[data-value="${value}"]`,
   ) as HTMLElement;
   element.style.fill = "url(#gradient)";
+  element.style.opacity = "1";
 };
 
 const removeGradientFillFromElement = (value: string) => {
@@ -61,6 +62,24 @@ const removeGradientFillFromElement = (value: string) => {
     `[data-value="${value}"]`,
   ) as HTMLElement;
   element.style.fill = "rgb(var(--color-primary-400))";
+};
+
+const fadeOut = () => {
+  const elements = document.querySelectorAll(
+    `[data-is-bar="true"]`,
+  ) as NodeListOf<HTMLElement>;
+  elements.forEach((element) => {
+    element.style.opacity = "0.2";
+  });
+};
+
+const fadeIn = () => {
+  const elements = document.querySelectorAll(
+    `[data-is-bar="true"]`,
+  ) as NodeListOf<HTMLElement>;
+  elements.forEach((element) => {
+    element.style.opacity = "1";
+  });
 };
 </script>
 <template>
@@ -77,9 +96,11 @@ const removeGradientFillFromElement = (value: string) => {
           [GroupedBar.selectors.barGroup]: {
             mouseover: (d: DataRecord) => {
               console.log(d);
+              fadeOut();
               addGradientFillToElement(`${d.y}-${d.label}`);
             },
             mouseout: (d: DataRecord) => {
+              fadeIn();
               removeGradientFillFromElement(`${d.y}-${d.label}`);
             },
           },
@@ -87,6 +108,7 @@ const removeGradientFillFromElement = (value: string) => {
         :attributes="{
           [GroupedBar.selectors.bar]: {
             'data-value': (d: DataRecord) => `${d.y}-${d.label}`,
+            'data-is-bar': 'true',
           },
         }"
       />
@@ -107,4 +129,8 @@ const removeGradientFillFromElement = (value: string) => {
     </VisXYContainer>
   </div>
 </template>
-<style scoped></style>
+<style>
+[data-is-bar="true"] {
+  transition: opacity 0.2s ease-in-out;
+}
+</style>
