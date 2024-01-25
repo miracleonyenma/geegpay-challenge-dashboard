@@ -9,20 +9,20 @@ import {
 } from "@unovis/vue";
 import { GroupedBar } from "@unovis/ts";
 
-const props = defineProps<{ data?: DataRecord[] }>();
+const props = defineProps<{ data: DataRecord[] }>();
 
 const data = ref<DataRecord[]>(
   props.data || [
     { x: 0, y: 6, label: "Jan" },
     { x: 1, y: 21, label: "Feb" },
-    { x: 2, y: 3, label: "Mar" },
+    { x: 2, y: 5, label: "Mar" },
     { x: 3, y: 9, label: "Apr" },
     { x: 4, y: 15, label: "May" },
     { x: 5, y: 45, label: "Jun" },
     { x: 6, y: 18, label: "Jul" },
     { x: 7, y: 6, label: "Aug" },
     { x: 8, y: 32, label: "Sep" },
-    { x: 9, y: 3, label: "Oct" },
+    { x: 9, y: 7, label: "Oct" },
     { x: 10, y: 30, label: "Nov" },
     { x: 11, y: 25, label: "Dec" },
   ],
@@ -37,14 +37,14 @@ const triggers = {
     }).format(d.y),
 };
 
-const tickFormat = (tick: number) => data.value[tick].y;
+const tickFormat = computed(() => (tick: number) => props.data[tick].label);
 
 const x = (d: DataRecord) => d.x;
 const y = (d: DataRecord) => d.y;
 </script>
 <template>
   <div class="grouped-bar">
-    <VisXYContainer :data="data">
+    <VisXYContainer :data="$props.data">
       <VisGroupedBar
         :groupWidth="45"
         :groupPadding="0.45"
@@ -57,7 +57,7 @@ const y = (d: DataRecord) => d.y;
         :gridLine="false"
         :domainLine="false"
         type="x"
-        :tickFormat="tickFormat"
+        :tickFormat="(tick: number) => $props.data[tick]?.label"
       />
       <VisAxis type="y" :domainLine="false" />
       <VisTooltip
