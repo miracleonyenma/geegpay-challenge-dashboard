@@ -42,9 +42,18 @@ const getDateIntl = () => {
         <AppAvatarBtn class="max-xl:hidden" />
       </div>
 
-      <div class="flex gap-4 xl:hidden">
+      <div class="flex items-center gap-4 xl:hidden">
         <AppAvatarBtn size="sm" />
-        <UButton icon="i-heroicons-bars-2" square @click="isOpen = true" />
+        <div>
+          <UButton
+            icon="i-heroicons-bars-2"
+            :ui="{
+              rounded: 'rounded-full',
+            }"
+            @click="isOpen = true"
+            class="shrink-0"
+          />
+        </div>
 
         <USlideover v-model="isOpen">
           <UCard
