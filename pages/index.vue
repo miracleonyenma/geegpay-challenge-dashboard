@@ -79,7 +79,7 @@ const orderGroupData = [
   {
     name: "Total Income",
     icon: CoinBulkIcon,
-    value: 120,
+    value: formatCurrency(350),
     trend: +23.5,
   },
 ];
@@ -92,8 +92,8 @@ watch(
 );
 </script>
 <template>
-  <main class="grid grid-cols-9 gap-4 p-4">
-    <div class="col-span-5">
+  <main class="grid gap-4 p-4 xl:grid-cols-9">
+    <div class="xl:col-span-5">
       <UCard
         :ui="{
           divide: 'divide-none',
@@ -127,8 +127,79 @@ watch(
         <GroupedBar :data="data" />
       </UCard>
     </div>
-    <div class="grid-col col-span-4 grid">
-      
+    <div class="grid gap-4 lg:grid-cols-2 xl:col-span-4">
+      <UCard
+        v-for="item in orderGroupData"
+        :key="item.name"
+        :ui="{
+          base: 'flex flex-col',
+          divide: 'divide-none',
+          header: {
+            padding: '!p-3',
+          },
+          body: {
+            padding: '!p-3',
+          },
+          footer: {
+            padding: '!p-3 mt-auto',
+          },
+        }"
+      >
+        <template #header>
+          <div class="flex justify-between">
+            <UBadge
+              variant="solid"
+              color="white"
+              :ui="{
+                rounded: 'rounded-full',
+              }"
+              class="p-1.5 text-primary"
+            >
+              <component :is="item.icon" class="icon" />
+            </UBadge>
+          </div>
+        </template>
+        <div class="flex flex-col">
+          <h2 class="font-medium text-gray-500">
+            {{ item.name }}
+          </h2>
+          <span class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            {{ item.value }}
+          </span>
+        </div>
+        <template #footer>
+          <div class="flex items-start gap-1">
+            <UBadge
+              v-if="item.trend > 0"
+              variant="soft"
+              :ui="{
+                rounded: 'rounded-full',
+              }"
+              class="inline-flex justify-center gap-1"
+            >
+              <UIcon name="i-heroicons-arrow-trending-up" />
+
+              <span> {{ Math.abs(item.trend) }}% </span>
+            </UBadge>
+            <UBadge
+              v-else
+              variant="soft"
+              :ui="{
+                rounded: 'rounded-full',
+              }"
+              color="red"
+              class="inline-flex justify-center gap-1"
+            >
+              <UIcon name="i-heroicons-arrow-trending-down" />
+
+              <span> {{ Math.abs(item.trend) }}% </span>
+            </UBadge>
+            <span class="text-sm text-gray-500 dark:text-gray-400">
+              vs. previous month
+            </span>
+          </div>
+        </template>
+      </UCard>
     </div>
   </main>
 </template>
