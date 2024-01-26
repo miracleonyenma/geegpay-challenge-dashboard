@@ -84,12 +84,44 @@ const orderGroupData = [
   },
 ];
 
-watch(
-  () => data.value,
-  (value) => {
-    console.log(value);
+const people = [
+  {
+    name: "Lindsay Walton",
+    title: "Front-end Developer",
+    email: "lindsay.walton@example.com",
+    role: "Member",
   },
-);
+  {
+    name: "Courtney Henry",
+    title: "Designer",
+    email: "courtney.henry@example.com",
+    role: "Admin",
+  },
+  {
+    name: "Tom Cook",
+    title: "Director of Product",
+    email: "tom.cook@example.com",
+    role: "Member",
+  },
+  {
+    name: "Whitney Francis",
+    title: "Copywriter",
+    email: "whitney.francis@example.com",
+    role: "Admin",
+  },
+  {
+    name: "Leonard Krasner",
+    title: "Senior Designer",
+    email: "leonard.krasner@example.com",
+    role: "Owner",
+  },
+  {
+    name: "Floyd Miles",
+    title: "Principal Designer",
+    email: "floyd.miles@example.com",
+    role: "Member",
+  },
+];
 </script>
 <template>
   <main class="grid gap-4 p-4 xl:grid-cols-9">
@@ -153,7 +185,7 @@ watch(
               :ui="{
                 rounded: 'rounded-full',
               }"
-              class="p-1.5 text-primary"
+              class="p-2 text-primary"
             >
               <component :is="item.icon" class="icon" />
             </UBadge>
@@ -199,6 +231,28 @@ watch(
             </span>
           </div>
         </template>
+      </UCard>
+    </div>
+    <div class="xl:col-span-5">
+      <UCard
+        :ui="{
+          divide: 'divide-none',
+        }"
+        class="w-full"
+      >
+        <template #header>
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+              Last Orders
+            </h2>
+
+            <div class="flex items-center gap-4">
+              <UButton variant="link"> See All </UButton>
+            </div>
+          </div>
+        </template>
+
+        <UTable :rows="people" />
       </UCard>
     </div>
   </main>
