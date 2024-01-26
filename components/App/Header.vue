@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SearchIcon from "~/assets/svg/icon-search.svg";
+import { formatDate } from "~/utils/format";
 
 const isOpen = ref(false);
 
@@ -65,11 +66,7 @@ const items = [
 // function to get date in format of month, day, year e.g November 11, 2020 using intl
 const getDateIntl = () => {
   const date = new Date();
-  return new Intl.DateTimeFormat("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  }).format(date);
+  return formatDate(date.toISOString());
 };
 </script>
 <template>

@@ -5,6 +5,7 @@ import ThreeDRotateBulkIcon from "~/assets/svg/vuesax/bulk/3d-rotate.svg";
 import CoinBulkIcon from "~/assets/svg/vuesax/bulk/coin.svg";
 import ShoppingCartBulkIcon from "~/assets/svg/vuesax/bulk/shopping-cart.svg";
 import { VisXYContainer, VisLine, VisAxis } from "@unovis/vue";
+import { label } from "@unovis/ts/components/axis/style";
 
 const monthlyData: DataRecord[] = [
   { x: 0, y: 6, label: "Jan" },
@@ -86,40 +87,62 @@ const orderGroupData = [
 
 const people = [
   {
+    id: 1,
     name: "Lindsay Walton",
-    title: "Front-end Developer",
-    email: "lindsay.walton@example.com",
-    role: "Member",
+    date: "2021-01-01",
+    amount: "80000",
+    status: "Paid",
   },
   {
-    name: "Courtney Henry",
-    title: "Designer",
-    email: "courtney.henry@example.com",
-    role: "Admin",
+    id: 2,
+    name: "Steve Rogers",
+    date: "2024-01-01",
+    amount: "89000",
+    status: "Refund",
   },
   {
-    name: "Tom Cook",
-    title: "Director of Product",
-    email: "tom.cook@example.com",
-    role: "Member",
+    id: 3,
+    name: "John Doe",
+    date: "2024-04-03",
+    amount: "90000",
+    status: "Paid",
   },
   {
-    name: "Whitney Francis",
-    title: "Copywriter",
-    email: "whitney.francis@example.com",
-    role: "Admin",
+    id: 4,
+    name: "Tony Stark",
+    date: "2024-04-03",
+    amount: "900000",
+    status: "Paid",
   },
   {
-    name: "Leonard Krasner",
-    title: "Senior Designer",
-    email: "leonard.krasner@example.com",
-    role: "Owner",
+    id: 5,
+    name: "Bruce Wayne",
+    date: "2024-06-03",
+    amount: "9100000",
+    status: "Paid",
+  },
+];
+
+const columns = [
+  {
+    key: "name",
+    label: "Name",
   },
   {
-    name: "Floyd Miles",
-    title: "Principal Designer",
-    email: "floyd.miles@example.com",
-    role: "Member",
+    key: "date",
+    label: "Date",
+  },
+
+  {
+    key: "amount",
+    label: "Amount",
+  },
+  {
+    key: "status",
+    label: "Status",
+  },
+  {
+    key: "invoice",
   },
 ];
 </script>
@@ -252,7 +275,62 @@ const people = [
           </div>
         </template>
 
-        <UTable :rows="people" />
+        <UTable
+          :rows="people"
+          :columns="columns"
+          :ui="{
+            divide: 'divide-gray-200 dark:divide-gray-800',
+          }"
+        >
+          <template #name-data="{ row }">
+            <div class="flex items-center gap-2">
+              <UAvatar
+                :src="`https://i.pravatar.cc/150?u=${row.id}`"
+                :alt="row.name"
+              />
+              <span
+                class="text-sm font-semibold text-gray-800 dark:text-gray-100"
+              >
+                {{ row.name }}
+              </span>
+            </div>
+          </template>
+          <template #date-data="{ row }">
+            {{
+              formatDate(row.date, {
+                dateStyle: "medium",
+              })
+            }}
+          </template>
+          <template #amount-data="{ row }">
+            <span class="font-semibold">
+              {{ formatCurrency(row.amount) }}
+            </span>
+          </template>
+          <template #status-data="{ row }">
+            <span
+              v-if="row.status === 'Paid'"
+              class="font-semibold text-green-500"
+            >
+              {{ row.status }}
+            </span>
+            <span v-else class="font-semibold text-red-500">
+              {{ row.status }}
+            </span>
+          </template>
+          <template #invoice-data="{ row }">
+            <UButton
+              variant="link"
+              color="gray"
+              :ui="{
+                rounded: 'rounded-full',
+              }"
+              icon="i-heroicons-document-arrow-down"
+            >
+              View
+            </UButton>
+          </template>
+        </UTable>
       </UCard>
     </div>
   </main>

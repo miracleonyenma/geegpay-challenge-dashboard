@@ -6,4 +6,13 @@ const formatCurrency = (value: number) => {
   }).format(value);
 };
 
-export { formatCurrency };
+const formatDate = (date: string, options?: Intl.DateTimeFormatOptions) => {
+  return new Intl.DateTimeFormat(
+    "en-US",
+    options || {
+      dateStyle: "long",
+    },
+  ).format(new Date(date));
+};
+
+export { formatCurrency, formatDate };
