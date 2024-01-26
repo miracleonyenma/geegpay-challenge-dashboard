@@ -86,7 +86,7 @@ const fadeIn = () => {
   <div class="grouped-bar">
     <VisXYContainer :svgDefs="svgDefs" :data="$props.data">
       <VisGroupedBar
-        :groupWidth="40"
+        :groupMaxWidth="40"
         :groupPadding="0.45"
         :roundedCorners="true"
         :x="x"

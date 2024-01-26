@@ -44,7 +44,7 @@ const getDateIntl = () => {
 
       <div class="flex gap-4 xl:hidden">
         <AppAvatarBtn size="sm" />
-        <UButton icon="i-heroicons-bars-2" @click="isOpen = true" />
+        <UButton icon="i-heroicons-bars-2" square @click="isOpen = true" />
 
         <USlideover v-model="isOpen">
           <UCard

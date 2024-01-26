@@ -27,7 +27,7 @@ const platformsData = [
 ];
 </script>
 <template>
-  <main class="grid gap-4 p-4 xl:grid-cols-9">
+  <main class="flex flex-col gap-4 p-4 xl:grid xl:grid-cols-9">
     <div class="xl:col-span-5">
       <DashboardSalesTrend />
     </div>

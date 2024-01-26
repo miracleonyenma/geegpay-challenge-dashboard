@@ -55,8 +55,11 @@ const items = [
       }"
       icon="i-heroicons-chevron-down"
       trailing
+      class="!pl-2"
     >
-      <UAvatar src="https://i.pravatar.cc/150?u=3" alt="Justin Bergson" />
+      <template #leading>
+        <UAvatar src="https://i.pravatar.cc/150?u=3" alt="Justin Bergson" />
+      </template>
       <div v-if="props.size !== 'sm'" class="flex flex-col">
         <span class="text-sm font-semibold text-gray-800 dark:text-gray-100">
           Justin Bergson
