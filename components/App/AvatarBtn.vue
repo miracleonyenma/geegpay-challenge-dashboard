@@ -47,11 +47,7 @@ const items = [
 ];
 </script>
 <template>
-  <UDropdown
-    class="max-lg:hidden"
-    :items="items"
-    :popper="{ placement: 'bottom-start' }"
-  >
+  <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">
     <UButton
       color="gray"
       :ui="{
