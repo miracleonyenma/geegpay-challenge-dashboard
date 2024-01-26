@@ -59,6 +59,8 @@ const columns = [
     key: "invoice",
   },
 ];
+
+const modalIsOpen = ref(false);
 </script>
 <template>
   <UCard
@@ -128,9 +130,102 @@ const columns = [
             rounded: 'rounded-full',
           }"
           icon="i-heroicons-document-arrow-down"
+          @click="modalIsOpen = true"
         >
           View
         </UButton>
+        <UModal v-model="modalIsOpen">
+          <UCard
+            :ui="{
+              ring: '',
+              divide: 'divide-y divide-gray-100 dark:divide-gray-800',
+            }"
+          >
+            <template #header>
+              <h3
+                class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+              >
+                Invoice
+              </h3>
+            </template>
+
+            <ul class="flex flex-col gap-2">
+              <li class="flex justify-between">
+                <span class="text-sm text-gray-500 dark:text-gray-400">
+                  Invoice Number
+                </span>
+                <span
+                  class="text-sm font-semibold text-gray-800 dark:text-gray-100"
+                >
+                  #{{ row.id }}
+                </span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-sm text-gray-500 dark:text-gray-400">
+                  Date
+                </span>
+                <span
+                  class="text-sm font-semibold text-gray-800 dark:text-gray-100"
+                >
+                  {{
+                    formatDate(row.date, {
+                      dateStyle: "medium",
+                    })
+                  }}
+                </span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-sm text-gray-500 dark:text-gray-400">
+                  Amount
+                </span>
+                <span
+                  class="text-sm font-semibold text-gray-800 dark:text-gray-100"
+                >
+                  {{ formatCurrency(row.amount) }}
+                </span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-sm text-gray-500 dark:text-gray-400">
+                  Status
+                </span>
+                <span
+                  v-if="row.status === 'Paid'"
+                  class="text-sm font-semibold text-green-500"
+                >
+                  {{ row.status }}
+                </span>
+                <span v-else class="text-sm font-semibold text-red-500">
+                  {{ row.status }}
+                </span>
+              </li>
+            </ul>
+
+            <template #footer>
+              <div class="flex justify-end gap-2">
+                <UButton
+                  variant="link"
+                  color="gray"
+                  :ui="{
+                    rounded: 'rounded-full',
+                  }"
+                  @click="modalIsOpen = false"
+                >
+                  Close
+                </UButton>
+                <UButton
+                  variant="solid"
+                  color="primary"
+                  :ui="{
+                    rounded: 'rounded-full',
+                  }"
+                  @click="modalIsOpen = false"
+                >
+                  Download
+                </UButton>
+              </div>
+            </template>
+          </UCard>
+        </UModal>
       </template>
     </UTable>
   </UCard>

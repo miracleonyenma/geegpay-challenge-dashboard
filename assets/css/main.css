@@ -86,3 +86,19 @@
     @apply h-6 w-6;
   }
 }
+
+.site-section {
+  @apply py-16;
+}
+
+.site-section > .wrapper {
+  @apply mx-auto max-w-6xl;
+}
+
+.site-section__header {
+  @apply mb-8;
+}
+
+.site-section__title {
+  @apply text-3xl font-bold;
+}

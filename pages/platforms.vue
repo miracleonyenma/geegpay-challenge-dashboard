@@ -1,5 +1,5 @@
 <template>
   <main class="p-4">
-    <DashboardUsersTable />
+    <DashboardPlatforms />
   </main>
 </template>

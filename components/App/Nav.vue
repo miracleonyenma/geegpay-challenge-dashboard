@@ -58,20 +58,20 @@ const links = props.links || [
     to: "/users",
   },
   {
-    label: "Products",
+    label: "Orders",
     icon: {
       active: BoxBulkIcon,
       inactive: BoxBrokenIcon,
     },
-    to: "/products",
+    to: "/orders",
   },
   {
-    label: "Discounts",
+    label: "Platforms",
     icon: {
       active: DiscountShapeBulkIcon,
       inactive: DiscountShapeBrokenIcon,
     },
-    to: "/discounts",
+    to: "/platforms",
   },
   {
     label: "About",

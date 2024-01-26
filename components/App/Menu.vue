@@ -6,14 +6,6 @@ import ArrowRight2Icon from "~/assets/svg/vuesax/broken/arrow-right-2.svg";
 
 const bottomLinks = [
   {
-    label: "Settings",
-    icon: {
-      active: Setting2Icon,
-      inactive: Setting2Icon,
-    },
-    to: "/settings",
-  },
-  {
     label: "Next",
     icon: {
       active: ArrowRight2Icon,
@@ -21,6 +13,15 @@ const bottomLinks = [
     },
     to: "/next",
   },
+  {
+    label: "Settings",
+    icon: {
+      active: Setting2Icon,
+      inactive: Setting2Icon,
+    },
+    to: "/settings",
+  },
+
   {
     label: "Logout",
     icon: {
