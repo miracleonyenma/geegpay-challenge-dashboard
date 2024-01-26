@@ -39,7 +39,7 @@ const orderGroupData = [
 ];
 </script>
 <template>
-  <ul class="grid gap-4 lg:grid-cols-2">
+  <ul class="grid gap-4 md:grid-cols-2">
     <li v-for="item in orderGroupData" :key="item.name">
       <UCard
         :ui="{
@@ -71,7 +71,7 @@ const orderGroupData = [
               </UBadge>
             </div>
 
-            <component :is="item.chart" class="h-12 w-auto" />
+            <component :is="item.chart" class="h-[2.5rem] w-auto" />
           </div>
         </template>
         <div class="flex flex-col">
