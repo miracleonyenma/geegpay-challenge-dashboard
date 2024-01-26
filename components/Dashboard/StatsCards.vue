@@ -4,6 +4,8 @@ import BoxTickBulkIcon from "~/assets/svg/vuesax/bulk/box-tick.svg";
 import ThreeDRotateBulkIcon from "~/assets/svg/vuesax/bulk/3d-rotate.svg";
 import CoinBulkIcon from "~/assets/svg/vuesax/bulk/coin.svg";
 import ShoppingCartBulkIcon from "~/assets/svg/vuesax/bulk/shopping-cart.svg";
+import TrendUpChart from "~/assets/svg/trend-up.svg";
+import TrendDownChart from "~/assets/svg/trend-down.svg";
 
 const orderGroupData = [
   {
@@ -11,24 +13,28 @@ const orderGroupData = [
     icon: BoxTickBulkIcon,
     value: 350,
     trend: +23.5,
+    chart: TrendUpChart,
   },
   {
     name: "Total Refund",
     icon: ThreeDRotateBulkIcon,
     value: 270,
     trend: -23.5,
+    chart: TrendDownChart,
   },
   {
     name: "Average Sales",
     icon: ShoppingCartBulkIcon,
     value: 1567,
     trend: -23.5,
+    chart: TrendDownChart,
   },
   {
     name: "Total Income",
     icon: CoinBulkIcon,
     value: formatCurrency(350),
     trend: +23.5,
+    chart: TrendUpChart,
   },
 ];
 </script>
@@ -52,16 +58,20 @@ const orderGroupData = [
       >
         <template #header>
           <div class="flex justify-between">
-            <UBadge
-              variant="solid"
-              color="white"
-              :ui="{
-                rounded: 'rounded-full',
-              }"
-              class="p-2 text-primary"
-            >
-              <component :is="item.icon" class="icon" />
-            </UBadge>
+            <div class="shink-0">
+              <UBadge
+                variant="solid"
+                color="white"
+                :ui="{
+                  rounded: 'rounded-full',
+                }"
+                class="p-2 text-primary"
+              >
+                <component :is="item.icon" class="icon" />
+              </UBadge>
+            </div>
+
+            <component :is="item.chart" class="h-12 w-auto" />
           </div>
         </template>
         <div class="flex flex-col">
