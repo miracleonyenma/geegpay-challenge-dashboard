@@ -62,6 +62,12 @@ const getDateIntl = () => {
                 >
                   Menu
                 </h3>
+                <UButton
+                  variant="ghost"
+                  color="gray"
+                  icon="i-heroicons-x-mark"
+                  @click="isOpen = false"
+                />
               </div>
             </template>
             <div class="flex flex-col gap-4">
