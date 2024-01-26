@@ -56,10 +56,7 @@ const items = [
       icon="i-heroicons-chevron-down"
       trailing
     >
-      <UAvatar
-        src="https://avatars.githubusercontent.com/u/739984?v=4"
-        alt="Avatar"
-      />
+      <UAvatar src="https://i.pravatar.cc/150?img=3" alt="Justin Bergson" />
       <div v-if="props.size !== 'sm'" class="flex flex-col">
         <span class="text-sm font-semibold text-gray-800 dark:text-gray-100">
           Justin Bergson

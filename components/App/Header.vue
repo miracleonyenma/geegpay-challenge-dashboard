@@ -23,10 +23,10 @@ const getDateIntl = () => {
         Dashboard
       </h1>
 
-      <div class="flex flex-1 items-center justify-center gap-4 max-lg:hidden">
+      <div class="flex flex-1 items-center justify-center gap-4 max-xl:hidden">
         <AppSearch />
       </div>
-      <div class="flex flex-1 items-center justify-end gap-4 max-lg:hidden">
+      <div class="flex flex-1 items-center justify-end gap-4 max-xl:hidden">
         <UButton variant="ghost" color="gray" icon="i-heroicons-calendar">
           {{ getDateIntl() }}
         </UButton>
@@ -39,10 +39,10 @@ const getDateIntl = () => {
           icon="i-heroicons-bell"
         />
 
-        <AppAvatarBtn class="max-lg:hidden" />
+        <AppAvatarBtn class="max-xl:hidden" />
       </div>
 
-      <div class="flex gap-4 lg:hidden">
+      <div class="flex gap-4 xl:hidden">
         <AppAvatarBtn size="sm" />
         <UButton icon="i-heroicons-bars-2" @click="isOpen = true" />
 
