@@ -1,10 +1,27 @@
 <script setup lang="ts">
 import SearchIcon from "~/assets/svg/icon-search.svg";
+import CalendarLinearIcon from "~/assets/svg/solar_calendar-linear.svg";
+import BellOutlineIcon from "~/assets/svg/solar_bell-outline.svg";
 import { formatDate } from "~/utils/format";
 
 const isOpen = ref(false);
 
 const slideOverIsOpen = ref(false);
+
+const notificationsItems = [
+  [
+    {
+      id: 1,
+      label: "Order placed",
+      icon: "i-heroicons-shopping-bag",
+    },
+    {
+      id: 2,
+      label: "Refund processed",
+      icon: "i-heroicons-shopping-bag",
+    },
+  ],
+];
 
 // function to get date in format of month, day, year e.g November 11, 2020 using intl
 const getDateIntl = () => {
@@ -27,17 +44,25 @@ const getDateIntl = () => {
         <AppSearch />
       </div>
       <div class="flex flex-1 items-center justify-end gap-4 max-xl:hidden">
-        <UButton variant="ghost" color="gray" icon="i-heroicons-calendar">
+        <UButton variant="ghost" color="gray">
+          <template #leading>
+            <CalendarLinearIcon class="icon" />
+          </template>
           {{ getDateIntl() }}
         </UButton>
 
-        <UButton
-          color="gray"
-          :ui="{
-            rounded: 'rounded-full',
-          }"
-          icon="i-heroicons-bell"
-        />
+        <UDropdown :items="notificationsItems" :popper="{ arrow: true }">
+          <UButton
+            color="gray"
+            :ui="{
+              rounded: 'rounded-full',
+            }"
+          >
+            <template #leading>
+              <BellOutlineIcon class="icon" />
+            </template>
+          </UButton>
+        </UDropdown>
 
         <AppAvatarBtn class="max-xl:hidden" />
       </div>
@@ -81,19 +106,29 @@ const getDateIntl = () => {
             </template>
             <div class="flex flex-col gap-4">
               <AppSearch full />
-              <UButton variant="ghost" color="gray" icon="i-heroicons-calendar">
+              <UButton variant="ghost" color="gray">
+                <template #leading>
+                  <CalendarLinearIcon class="icon" />
+                </template>
                 {{ getDateIntl() }}
               </UButton>
 
-              <UButton
-                variant="ghost"
-                color="gray"
-                :ui="{
-                  rounded: 'rounded-full',
-                }"
-                icon="i-heroicons-bell"
-                label="Notifications"
-              />
+              <UDropdown :items="notificationsItems">
+                <UButton
+                  variant="ghost"
+                  color="gray"
+                  :ui="{
+                    rounded: 'rounded-full',
+                  }"
+                  icon="i-heroicons-bell"
+                  label="Notifications"
+                  class="w-full"
+                >
+                  <template #leading>
+                    <BellOutlineIcon class="icon" />
+                  </template>
+                </UButton>
+              </UDropdown>
             </div>
 
             <!-- <template #header>

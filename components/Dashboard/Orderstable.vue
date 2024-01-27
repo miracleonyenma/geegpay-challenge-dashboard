@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import DocumentDownloadOutlineIcon from "~/assets/svg/vuesax/outline/document-download.svg";
 const people = [
   {
     id: 1,
@@ -129,9 +130,11 @@ const modalIsOpen = ref(false);
           :ui="{
             rounded: 'rounded-full',
           }"
-          icon="i-heroicons-document-arrow-down"
           @click="modalIsOpen = true"
         >
+          <template #leading>
+            <DocumentDownloadOutlineIcon class="icon !h-4 !w-4" />
+          </template>
           View
         </UButton>
         <UModal v-model="modalIsOpen">
